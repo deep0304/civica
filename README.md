@@ -22,22 +22,19 @@ CIVICA contributes to:
 ## ⚙️ System Architecture
 
 ```
-+----------------+         +------------------+        +-----------------+
-|  Civic Sources |         | Data Pipeline &  |  -->   |  Vector Store   |
-| (MyGov, PRS,   |   -->   |  Cleaning        |        | (FAISS/Chroma)  |
-|  RTI, Nyaaya)  |         +------------------+        +-----------------+
-+----------------+                                              |
-       |                                                        v
-       |                                                +--------------+
-       ---------------------------------------------->  |   RAG LLM    |
-                                                        |  (Watsonx)   |
-                                                        +--------------+
-                                                               |
-                                                               v
-                                                      +------------------+
-                                                      |  CIVICA Agent UI |
-                                                      |   (Web/Mobile)   |
-                                                      +------------------+
++------------------+           +--------------------------+           +------------------+
+|   Frontend (UI)  |  ----->   |  Python HTTP Server      |  ----->   |  Watsonx RAG LLM |
+|  (Web Interface) |  Query    |  - Receives user input   |  Query    |  (Deployed on     |
+| (HTML/JS Static) |           |  - Forwards to Watsonx   |           |   IBM Cloud)      |
++------------------+           +--------------------------+           +------------------+
+       ^                                                                 |
+       |                                                                 v
+       +------------------------------------------------------+         
+       | Watsonx internally handles:                          |
+       |  ✅ Civic Data Index (vectorized knowledge)          |
+       |  ✅ Grounded answers via Retrieval + Generation       |
+       +------------------------------------------------------+
+
 ```
 
 - **Civic Sources**: Curated legal, policy, and governance datasets.
@@ -51,18 +48,15 @@ CIVICA contributes to:
 ## 🚀 Deployment
 
 **Tech Stack:**
-- IBM Watsonx.ai for LLM fine-tuning and RAG
-- Chroma / FAISS for vector storage
-- Python (FastAPI) backend
-- React Native frontend (WIP)
-- Data crawlers for automated updates
+- IBM Watsonx.ai for LLM grounded with the vector document for  (RAG functionality)
+- Python backend (Flask-like using `app.py`)
+- Static HTML/JS frontend served via `http.server`
 - GitHub Actions for CI/CD
 
 **Deployment Options:**
 - IBM Cloud
-- Dockerized microservices
-- REST and WebSocket APIs
-- Edge-ready for mobile and kiosk devices
+- Local deployment using Python HTTP and app server
+- REST API-based communication
 
 ---
 
@@ -70,8 +64,8 @@ CIVICA contributes to:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/civica-agent.git
-cd civica-agent
+git clone https://github.com/yourusername/civica.git
+cd civica
 
 # Setup virtual environment
 python -m venv venv
@@ -81,17 +75,16 @@ source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
 
 # Run backend
-uvicorn main:app --reload
+python3 app.py
 
-# (Optional) Start frontend
-cd frontend && npm install && npm run dev
+# Start frontend (new terminal)
+python3 -m http.server 8080
 ```
 
 ---
 
 ## ✅ Features
 
-- Multilingual civic Q&A (state-specific)
 - RTI process guidance
 - Grievance redressal steps (waste, water, corruption)
 - Scheme eligibility explanations
