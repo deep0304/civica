@@ -22,22 +22,22 @@ CIVICA contributes to:
 ## ⚙️ System Architecture
 
 ```
-+----------------+        +------------------+       +-----------------+
-|  Civic Sources |  -->   | Data Pipeline &  |  -->  |  Vector Store   |
-| (MyGov, PRS,   |        |  Cleaning        |       | (FAISS/Chroma)  |
-|  RTI, Nyaaya)  |        +------------------+       +-----------------+
-       |                                                |
-       |                                                v
-       |                                         +-------------+
-       +--------------------------------------->|   RAG LLM    |
-                                                 |  (Watsonx)  |
-                                                 +-------------+
-                                                        |
-                                                        v
-                                               +------------------+
-                                               |  CIVICA Agent UI |
-                                               |  (Web/Mobile)    |
-                                               +------------------+
++----------------+         +------------------+        +-----------------+
+|  Civic Sources |         | Data Pipeline &  |        |  Vector Store   |
+| (MyGov, PRS,   |   -->   |  Cleaning        |  -->   | (FAISS/Chroma)  |
+|  RTI, Nyaaya)  |         +------------------+        +-----------------+
+       |                                                        |
+       |                                                        v
+       |                                                +--------------+
+       |--------------------------------------------->  |   RAG LLM    |
+                                                        |  (Watsonx)   |
+                                                        +--------------+
+                                                               |
+                                                               v
+                                                      +------------------+
+                                                      |  CIVICA Agent UI |
+                                                      |   (Web/Mobile)   |
+                                                      +------------------+
 ```
 
 - **Civic Sources**: Curated legal, policy, and governance datasets.
