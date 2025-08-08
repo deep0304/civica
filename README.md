@@ -39,9 +39,8 @@ CIVICA contributes to:
 
 - **Civic Sources**: Curated legal, policy, and governance datasets.
 - **Data Pipeline**: Cleans, tokenizes, and indexes data into vector space.
-- **Vector Store**: Stores state-wise documents for semantic search (FAISS, ChromaDB).
 - **RAG LLM**: Watsonx-powered Retrieval-Augmented Generation using civic vectors.
-- **Agent UI**: User interface to query, receive answers, and give feedback.
+- **Assistant/Agent UI**: User interface to query, receive answers, and give feedback.
 
 ---
 
