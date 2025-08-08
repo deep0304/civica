@@ -13,7 +13,7 @@ def serve_index():
 if __name__ == "__main__":
     print("=" * 50)
     print("Frontend Server Starting...")
-    print("URL: http://localhost:3000")
+    print("URL: http://localhost:8080")
     print("Make sure:")
     print("1. index.html exists in current directory")
     print("2. Proxy server is running on port 8000")
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     if not os.path.exists('index.html'):
         print("WARNING: index.html not found!")
         
-    app.run(host='127.0.0.1', port=3000, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)
