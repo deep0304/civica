@@ -23,13 +23,13 @@ CIVICA contributes to:
 
 ```
 +----------------+         +------------------+        +-----------------+
-|  Civic Sources |         | Data Pipeline &  |        |  Vector Store   |
-| (MyGov, PRS,   |   -->   |  Cleaning        |  -->   | (FAISS/Chroma)  |
+|  Civic Sources |         | Data Pipeline &  |  -->   |  Vector Store   |
+| (MyGov, PRS,   |   -->   |  Cleaning        |        | (FAISS/Chroma)  |
 |  RTI, Nyaaya)  |         +------------------+        +-----------------+
-       |                                                        |
++----------------+                                              |
        |                                                        v
        |                                                +--------------+
-       |--------------------------------------------->  |   RAG LLM    |
+       ---------------------------------------------->  |   RAG LLM    |
                                                         |  (Watsonx)   |
                                                         +--------------+
                                                                |
